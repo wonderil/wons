@@ -1,0 +1,10 @@
+{
+"server" : "103..169",
+"local_address": "127.0.0.1",
+"server_port" : 27,
+"local_port" : 1080,
+"password" : "2.",
+"timeout" : 600,
+"method" : "aes-256-cfb",
+"fast_open":false
+}

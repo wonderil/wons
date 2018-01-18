@@ -1,0 +1,133 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+if_up_strictness link
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+
+format_human_readable
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Liberation Sans:size=8
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_value 200
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+alignment top_right
+gap_x 35
+gap_y 40
+minimum_size 300 600
+maximum_width 300
+
+default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades no
+
+default_color cccccc
+
+color0 cyan
+color1 green
+color2 blue
+color3 green
+TEXT
+${font Liberation Sans:style=Bold:size=8}SYSTEM $stippled_hr${font}
+##############
+#############
+# - CLOCK - #
+#############
+${voffset 4}${font WenQuanYi Micro Hei:style=Bold:size=13}日期时间 $stippled_hr${font}
+${voffset 4}${goto 32}${font clockfaces:size=40}O${font}
+${voffset -34}${goto 41}${font zoraclockH:size=30}${color2}${execpi 120 /usr/local/share/conkycolors/bin/conkyClock hour}${color}${font}
+${voffset -39}${goto 35}${font zoraclockM:size=40}${color2}${execpi 60 /usr/local/share/conkycolors/bin/conkyClock minute}${color}${font}
+${goto 100}${voffset -50}${font Ubuntu:style=Bold:size=16}${color2}${time %H}${time :%M}${time :%S}${color}${font}
+${goto 100}${voffset 0}${time %Y年 %b%d日}${voffset 8}
+${goto 100}${voffset -8}${font WenQuanYi Micro Hei:style=Bold:size=8}${color2}${time %A}${color}${font}
+
+${goto 90}${voffset 0}${font WenQuanYi Micro Hei:size=8}${alignr}${execpi 300 ~/.conkycolors/bin/lunar.sh -z}${font}
+################
+# - CALENDAR - #
+################
+
+${voffset -2}${color0}${font Poky:size=16}D${font}${voffset -8}${font Ubuntu:style=Bold:size=7}${offset -17}${voffset 4}${time %d}${font}${color}${voffset -1}${font WenQuanYi Micro Hei Mono:size=8}${execpi 300 DJS=`date +%_d`; cal -h | sed 's/日 一 二 三 四 五 六/${font WenQuanYi Micro Hei Mono:size=8}日  一 二  三 四  五 六${font WenQuanYi Micro Hei Mono:size=8}/' |sed '2,8!d'| sed '/./!d' | sed 's/^/${goto 40} /'| sed 's/$/ /' | sed 's/^/ /' | sed /" $DJS "/s/" $DJS "/" "'${font Arial:style=Bold:size=9}${voffset -2}${offset 0}${color1} '"$DJS"'${color}${font WenQuanYi Micro Hei Mono:size=8}'" "/}${voffset -1}
+${voffset -60}${font WenQuanYi Micro Hei:size=8} 月相${font}
+${goto 10}${font weather:size=30}${execpi 300 ~/.conkycolors/bin/mond}${font}
+${voffset 0}
+#############
+####################
+# - MEDIA PLAYER - #
+####################
+##${voffset 4}${font Liberation Sans:style=Bold:size=8}MEDIA PLAYER $stippled_hr${font}
+##${execi 6 /home/qi/.conkycolors/bin/conkyCover}${execpi 2 /usr/local/share/conkycolors/bin/conkyRhythmbox -t /home/qi/.conkycolors/templates/conkyPlayer.template}
+##############
+##########
+# - HD - #
+##########
+${voffset 4}${font Liberation Sans:style=Bold:size=8}HD $stippled_hr${font}
+# |--HDTEMP1
+${voffset 4}${offset 2}${color0}${font ConkyColors:size=15}8${font}${color}${voffset -3}${goto 32}Temperature: ${font Liberation Sans:style=Bold:size=8}${color1}${execi 120 hddtemp /dev/sda -n --unit=C}°C${color}${font}${alignr}${color2}/dev/sda${color}
+${execpi 30 /usr/local/share/conkycolors/bin/conkyHD1}
+###############
+
+${color #0077ff}$nodename     ${alignc}$sysname $kernel ${alignr}$color${time %H:%M}
+${color #0077ff}Uptime:$color $uptime ${color #0077ff} Load:$color $loadavg
+
+${color #0077ff}CPU: ${cpu}% ${color #0077ff}${cpubar 5,80}  ${color #0077ff}Disk I/O: $color${diskio}
+${color #0077ff}${cpugraph 0 32,155 104E8B 0077ff} $alignr${color #0077ff}${diskiograph 32,155 104E8B 0077ff 750}
+${color #0077ff}RAM Usage:$color $mem${color #0077ff}/${color}$memmax - $memperc% ${color #0077ff}$membar
+${color #0077ff}Swap Usage:$color $swap${color #0077ff}/${color}$swapmax - $swapperc% ${color #0077ff}${swapbar}
+${color #0077ff}Procs:$color $processes ${color #0077ff}Run:$color $running_processes $color ${color #0077ff} CPU:$color ${exec sensors | grep 'Core 0' | cut -c16-17}°C ${exec sensors | grep 'Core 2' | cut -c16-17}°C ${color #0077ff} HD:$color ${exec hddtemp /dev/sdb -n -u=C}°C 
+${color #0077ff}Entropy: ${color}${entropy_avail}${color #0077ff}/${color}${entropy_poolsize} ${color #0077ff}${entropy_bar}
+${color #0077ff}Net Down:$color ${downspeed wlp4s0} k/s      ${color #0077ff}Net Up:$color ${upspeed wlp4s0} k/s
+${color #0077ff}${downspeedgraph wlp4s0 32,155 104E8B 0077ff} $alignr${color #0077ff}${upspeedgraph wlp4s0 32,155 104E8B 0077ff}
+
+${color #0077ff}Top Processes:
+${color #0077ff}Name              PID     CPU%   MEM%
+$color ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+$color ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+$color ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${color #0077ff}Mem usage
+$color ${top_mem name 1} ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+$color ${top_mem name 2} ${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+$color ${top_mem name 3} ${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+
+ {color #0077ff}Port(s) ${alignr} \#Connections$color
+$color Inbound: ${tcp_portmon 2 32767 count}  Outbound: ${tcp_portmon 32768 61000 count}${alignr}ALL: ${tcp_portmon 2 65535 count}
+${color #0077ff}Inbound Connection ${alignr} Local Service/Port$color
+ ${tcp_portmon 2 32767 rhost 0} ${alignr} ${tcp_portmon 2 32767 lservice 0}
+ ${tcp_portmon 2 32767 rhost 1} ${alignr} ${tcp_portmon 2 32767 lservice 1}
+ ${tcp_portmon 2 32767 rhost 2} ${alignr} ${tcp_portmon 2 32767 lservice 2}
+ ${tcp_portmon 2 32767 rhost 3} ${alignr} ${tcp_portmon 2 32767 lservice 3}
+ ${tcp_portmon 2 32767 rhost 4} ${alignr} ${tcp_portmon 2 32767 lservice 4}
+
+${color #0077ff}Outbound Connection ${alignr} Remote Service/Port$color
+ ${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rservice 0}
+ ${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rservice 1}
+ ${tcp_portmon 32768 61000 rhost 2} ${alignr} ${tcp_portmon 32768 61000 rservice 2}
+ ${tcp_portmon 32768 61000 rhost 3} ${alignr} ${tcp_portmon 32768 61000 rservice 3}
+ ${tcp_portmon 32768 61000 rhost 4} ${alignr} ${tcp_portmon 32768 61000 rservice 4}
+
+
+${color #ff0000}${font DotMatrix:style=Bold:pixelsize=24}${alignc}距离fangjia还有${exec echo $((($(date --date=2017-7-1 +%s)-$(date +%s))/86400))}天
+

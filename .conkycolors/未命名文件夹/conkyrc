@@ -1,0 +1,201 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+if_up_strictness link
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+
+format_human_readable
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Liberation Sans:size=8
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_value 200
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+alignment top_right
+gap_x 25
+gap_y 40
+minimum_size 182 600
+maximum_width 182
+
+default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades no
+
+default_color cccccc
+
+color0 cyan
+color1 green
+color2 orange
+color3 green
+
+TEXT
+${font Liberation Sans:style=Bold:size=8}SYSTEM $stippled_hr${font}
+##############
+# - SYSTEM - #
+##############
+${color0}${voffset 8}${offset 4}${font ConkyColorsLogos:size=9}u${font}${color}${voffset -16}
+${color0}${font ConkyColors:size=16}b${font}${color}
+${goto 32}${voffset -23}Kernel: ${alignr}${color2}${kernel}${color}
+${goto 32}Uptime: ${alignr}${color2}${uptime}${color}
+# |--CPU
+${voffset 4}${color0}${font ConkyColors:size=16}c${font}${offset -20}${voffset 6}${cpubar cpu0 4,17}${color}${voffset -16}${goto 32}CPU1: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu1}%${color}${font} ${alignr}${color2}${cpugraph cpu1 8,60 }${color}
+${goto 32}CPU2: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu2}%${color}${font} ${alignr}${color2}${cpugraph cpu2 8,60 }${color}
+# |--MEM
+${voffset 2}${color0}${font ConkyColors:size=15}g${font}${color}${goto 32}${voffset -7}RAM: ${font Liberation Sans:style=Bold:size=8}${color1}$memperc%${color}${font}
+${offset 1}${color0}${membar 4,17}${color}${goto 32}F: ${font Liberation Sans:style=Bold:size=8}${color2}${memeasyfree}${color}${font} U: ${font Liberation Sans:style=Bold:size=8}${color2}${mem}${color}${font}
+# |--PROC
+${voffset 4}${color0}${font ConkyColors:size=16}C${font}${color}${goto 32}${voffset -10}Processes: ${color2}${alignr 13}CPU${alignr}RAM${color}
+${voffset -1}${goto 42}${color2}${top name 1}${color}${font Liberation Sans:style=Bold:size=8}${color1} ${goto 126}${top cpu 1}${alignr }${top mem 1}${color}${font}
+${voffset -1}${goto 42}${color2}${top name 2}${color}${font Liberation Sans:style=Bold:size=8}${color1} ${goto 126}${top cpu 2}${alignr }${top mem 2}${color}${font}
+${voffset -1}${goto 42}${color2}${top name 3}${color}${font Liberation Sans:style=Bold:size=8}${color1} ${goto 126}${top cpu 3}${alignr }${top mem 3}${color}${font}
+#############
+# - CLOCK - #
+#############
+${voffset 4}${font Liberation Sans:style=Bold:size=8}DATE $stippled_hr${font}
+${voffset -2}${alignc 38}${color2}${font Liberation Sans:style=Bold:size=30}${time %H:%M}${font}${color}
+${voffset 6}${alignc}${time %d %B %Y}${voffset -6}
+################
+# - CALENDAR - #
+################
+${voffset 2}${color0}${font ConkyColors:size=15}n${font}${voffset -9}${offset 1}${font Liberation Sans:style=Bold:size=7}${offset -17}${voffset 4}${time %d}${font}${color}${voffset -1}${font Liberation Mono:size=7}${execpi 300 DJS=`date +%_d`; ncal -h -S -b|sed '2,8!d'| sed '/./!d' | sed 's/^/${goto 42} /'| sed 's/$/ /' | sed 's/^/ /' | sed /" $DJS "/s/" $DJS "/" "'${font Arial:style=Bold:size=8}${voffset -2}${offset -4}${color1} '"$DJS"'${color}${font Liberation Mono:size=7}'" "/}${voffset -1}
+#############
+# - PHOTO - #
+#############
+# For a working photo widget you need to specify a file or directory in conkyPhoto or conkyPhotoRandom script in  /home/qi/.conkycolors/bin /usr/local/share/conkycolors/bin folders
+#${voffset 4}${font Liberation Sans:style=Bold:size=8}PHOTO $stippled_hr${font}
+#${execi 60 /usr/local/share/conkycolors/bin/conkyPhotoRandom}${image /tmp/conkyPhoto.png -s 174x110 -p 4,308}${voffset 98}
+####################
+# - MEDIA PLAYER - #
+####################
+##${voffset 4}${font Liberation Sans:style=Bold:size=8}MEDIA PLAYER $stippled_hr${font}
+##${execi 6 /home/qi/.conkycolors/bin/conkyCover}${execpi 2 /usr/local/share/conkycolors/bin/conkyRhythmbox -t /home/qi/.conkycolors/templates/conkyPlayer.template}
+##############
+# - NVIDIA - #
+##############
+#${voffset 4}${font Liberation Sans:style=Bold:size=8}NVIDIA $stippled_hr${font}
+#${color0}${voffset 2}${font ConkyColorsLogos:size=16}n${font}${color}${goto 32}${voffset -8}GPU Temp:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q #gpu:0]/GPUCoreTemp | grep Attribute | cut -d ' ' -f 6 | cut -c 1-2}${font}${color}°C
+#${goto 32}GPU Clock:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q [gpu:0]/GPU2DClockFreqs -t}${font}${color}MHz
+#${goto 32}Video RAM:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q [gpu:0]/VideoRam -t}${font}${color}KiB
+#${goto 32}Driver Version:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q [gpu:0]/NvidiaDriverVersion -t}${font}${color}
+##########
+# - HD - #
+##########
+${voffset 4}${font Liberation Sans:style=Bold:size=8}HD $stippled_hr${font}
+# |--HDTEMP1
+${voffset 4}${offset 2}${color0}${font ConkyColors:size=15}8${font}${color}${voffset -3}${goto 32}Temperature: ${font Liberation Sans:style=Bold:size=8}${color1}${execi 120 hddtemp /dev/sda -n --unit=C}°C${color}${font}${alignr}${color2}/dev/sda${color}
+${execpi 30 /usr/local/share/conkycolors/bin/conkyHD1}
+###############
+# - NETWORK - #
+###############
+${voffset -4}${font Liberation Sans:style=Bold:size=8}NETWORK $stippled_hr${font}
+# |--WLAN0
+${if_up wlan0}
+${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed wlan0}${color}${font} ${alignr}${color2}${upspeedgraph wlan0 8,60 }${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup wlan0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed wlan0}${color}${font} ${alignr}${color2}${downspeedgraph wlan0 8,60 }${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown wlan0}${color}${font}
+${color0}${font ConkyColors:size=15}j${font}${color}${voffset -6}${goto 32}Signal: ${font Liberation Sans:style=Bold:size=8}${color1}${wireless_link_qual_perc wlan0}%${color}${font} ${alignr}${color2}${wireless_link_bar 8,60 wlan0}${color}
+${voffset 2}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr wlan0}${color}
+# |--ETH0
+${else}${if_up eth0}
+${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed eth0}${color}${font} ${alignr}${color2}${upspeedgraph eth0 8,60 }${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup eth0}${color}${font}
+${voffset 4}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed eth0}${color}${font} ${alignr}${color2}${downspeedgraph eth0 8,60 }${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown eth0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr eth0}${color}
+# |--ENP4S0
+${else}${if_up enp4s0}
+${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed enp4s0}${color}${font} ${alignr}${color2}${upspeedgraph enp4s0 8,60 }${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup enp4s0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed enp4s0}${color}${font} ${alignr}${color2}${downspeedgraph enp4s0 8,60 }${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown enp4s0}${color}${font}
+${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr enp4s0}${color}
+# |--PPP0
+${else}${if_up ppp0}
+${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed ppp0}${color}${font} ${alignr}${color2}${upspeedgraph ppp0 8,60 }${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup ppp0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed ppp0}${color}${font} ${alignr}${color2}${downspeedgraph ppp0 8,60 }${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown ppp0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr ppp0}${color}
+${else}${voffset 4}${color0}${font ConkyColors:size=15}q${font}${color}${voffset -6}${goto 32}Network Unavailable${voffset 14}${endif}${endif}${endif}${endif}
+##################
+# - BBCWEATHER - #
+##################
+# http://news.bbc.co.uk/weather/
+${voffset -8}${font Liberation Sans:style=Bold:size=8}WEATHER $stippled_hr${font}
+${if_gw}${voffset 4}${color0}${font ConkyColors:size=16}8${font}${color}
+${voffset -24}${goto 32}Temperature: ${font Liberation Sans:style=Bold:size=8}${color1}${execi 600 /usr/local/share/conkycolors/bin/conkyBBCWeather cur 1586 c}°C${color}${font}
+${goto 32}${color0}${font ConkyColors:size=8}w${font}${color}${font Liberation Sans:style=Bold:size=8}${voffset -1}${color1}${execi 600 /usr/local/share/conkycolors/bin/conkyBBCWeather min 1586 c}°C${color}${font}  ${color0}${font ConkyColors:size=8}x${font}${color}${voffset -1}${font Liberation Sans:style=Bold:size=8}${color1}${execi 600 /usr/local/share/conkycolors/bin/conkyBBCWeather max 1586 c}°C${color}${font}
+${goto 32}Humidity: ${font Liberation Sans:style=Bold:size=8}${color1}${execi 600 /usr/local/share/conkycolors/bin/conkyBBCWeather hum 1586 c}%${color}${font}${alignr}${color2}${execbar /usr/local/share/conkycolors/bin/conkyBBCWeather hum 1586 c}%${color}${font}
+${else}${voffset 4}${color0}${font ConkyColors:size=15}q${font}${color}${voffset -6}${goto 32}Weather Unavailable${voffset 14}${endif}
+
+
+TEXT
+${color #0077ff}$nodename     ${alignc}$sysname $kernel ${alignr}$color${time %H:%M}
+
+${color #0077ff}Uptime:$color $uptime ${color #0077ff} Load:$color $loadavg
+${color #0077ff}CPU: ${cpu}% ${color #0077ff}${cpubar 5,80}  ${color #0077ff}Disk I/O: $color${diskio}
+${color #0077ff}${cpugraph 0 32,155 104E8B 0077ff} $alignr${color #0077ff}${diskiograph 32,155 104E8B 0077ff 750}
+${color #0077ff}RAM Usage:$color $mem${color #0077ff}/${color}$memmax - $memperc% ${color #0077ff}$membar
+${color #0077ff}Swap Usage:$color $swap${color #0077ff}/${color}$swapmax - $swapperc% ${color #0077ff}${swapbar}
+${color #0077ff}Procs:$color $processes ${color #0077ff}Run:$color $running_processes $color ${color #0077ff} CPU:$color ${exec sensors | grep 'Core 0' | cut -c16-17}°C ${exec sensors | grep 'Core 2' | cut -c16-17}°C ${color #0077ff} HD:$color ${exec hddtemp /dev/sdb -n -u=C}°C 
+${color #0077ff}Entropy: ${color}${entropy_avail}${color #0077ff}/${color}${entropy_poolsize} ${color #0077ff}${entropy_bar}
+${color #0077ff}Net Down:$color ${downspeed eth0} k/s      ${color #0077ff}Net Up:$color ${upspeed eth0} k/s
+${color #0077ff}${downspeedgraph eth0 32,155 104E8B 0077ff} $alignr${color #0077ff}${upspeedgraph eth0 32,155 104E8B 0077ff}
+${color #0077ff}File systems:
+ ${color #0077ff}/          $color${fs_used /}/${fs_size /}${alignr}${color #0077ff}${fs_bar 5,120 /}
+ ${color #0077ff}/home      $color${fs_used /home}/${fs_size /home}${alignr}${color #0077ff}${fs_bar 5,120 /home}
+ ${color #0077ff}/opt       $color${fs_used /opt}/${fs_size /opt}${alignr}${color #0077ff}${fs_bar 5,120 /opt}
+ ${color #0077ff}/usr/local $color${fs_used /usr/local}/${fs_size /usr/local}${alignr}${color #0077ff}${fs_bar 5,120 /usr/local}
+ ${color #0077ff}/var       $color${fs_used /var}/${fs_size /var}${alignr}${color #0077ff}${fs_bar 5,120 /var}
+ ${color #0077ff}/WWW       $color${fs_used /mnt/www}/${fs_size /mnt/www}${alignr}${color #0077ff}${fs_bar 5,120 /mnt/www}
+
+${color #0077ff}Top Processes:
+${color #0077ff}Name              PID     CPU%   MEM%
+$color ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+$color ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+$color ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${color #0077ff}Mem usage
+$color ${top_mem name 1} ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+$color ${top_mem name 2} ${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+$color ${top_mem name 3} ${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+ 
+${color #0077ff}Port(s) ${alignr} \#Connections$color
+$color Inbound: ${tcp_portmon 1 32767 count}  Outbound: ${tcp_portmon 32768 61000 count}${alignr}ALL: ${tcp_portmon 1 65535 count}
+${color #0077ff}Inbound Connection ${alignr} Local Service/Port$color
+ ${tcp_portmon 1 32767 rhost 0} ${alignr} ${tcp_portmon 1 32767 lservice 0}
+ ${tcp_portmon 1 32767 rhost 1} ${alignr} ${tcp_portmon 1 32767 lservice 1}
+ ${tcp_portmon 1 32767 rhost 2} ${alignr} ${tcp_portmon 1 32767 lservice 2}
+ ${tcp_portmon 1 32767 rhost 3} ${alignr} ${tcp_portmon 1 32767 lservice 3}
+ ${tcp_portmon 1 32767 rhost 4} ${alignr} ${tcp_portmon 1 32767 lservice 4}
+${color #0077ff}Outbound Connection ${alignr} Remote Service/Port$color
+ ${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rservice 0}
+ ${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rservice 1}
+ ${tcp_portmon 32768 61000 rhost 2} ${alignr} ${tcp_portmon 32768 61000 rservice 2}
+ ${tcp_portmon 32768 61000 rhost 3} ${alignr} ${tcp_portmon 32768 61000 rservice 3}
+ ${tcp_portmon 32768 61000 rhost 4} ${alignr} ${tcp_portmon 32768 61000 rservice 4}
+
