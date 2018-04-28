@@ -1,0 +1,24 @@
+127.0.0.1	localhost
+127.0.1.1	qi
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+1.0.0.1 api.map.baidu.com
+1.0.0.1 ps.map.baidu.com
+1.0.0.1 sv.map.baidu.com
+1.0.0.1 offnavi.map.baidu.com
+1.0.0.1 newvector.map.baidu.com
+1.0.0.1 ulog.imap.baidu.com
+1.0.0.1 newloc.map.n.shifen.com
+
+::2 api.map.baidu.com
+::2 ps.map.baidu.com
+::2 sv.map.baidu.com
+::2 offnavi.map.baidu.com
+::2 newvector.map.baidu.com
+::2 ulog.imap.baidu.com
+::2 newloc.map.n.shifen.com
