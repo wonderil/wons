@@ -179,7 +179,8 @@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 `
 https://download.sublimetext.com/sublime-text_build-3143_amd64.deb
 `
-######让subl可以输入中文（需要你自己事先装好输入法= =）
+
+#####让subl可以输入中文（需要你自己事先装好输入法= =）
 
 >git clone https://github.com/lyfeyaj/sublime-text-imfix.git
 
@@ -191,8 +192,10 @@ sudo cp ./lib/libsublime-imfix.so /opt/sublime_text/
 
 sudo cp ./src/subl /usr/bin/
 `
-######一些常用插件
+#####一些常用插件
+
 packages Control
+
 
 ```
 
@@ -201,12 +204,21 @@ import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe0
 ```
 
 [material-theme](https://github.com/equinusocio/material-theme) 
+
 [Emmet（原名 Zen Coding](http://emmet.io/)
+
 JSFormat
+
 SublimeLinter
+
 Sublime Tmpl
+
 BracketHighlighter
+
 [Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete)
+
 [SublimeREPL](https://github.com/wuub/SublimeREPL)
+
 ###[Stacer](https://github.com/oguzhaninan/Stacer)
+
 ###[SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega)
